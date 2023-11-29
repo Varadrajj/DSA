@@ -1,0 +1,49 @@
+package com.demo.test;
+
+public class MergeSort {
+public static void main(String[] args) {
+	int[] arr = {1,23,3,21,54,65,3,3,54,6,77,2,5,7};
+	
+	Divide(arr,0,arr.length-1);
+}
+public static void Divide(int[] arr,int start,int end) {
+	if(start>=end) {
+		return;
+	}
+	
+	int mid=start+(end-start)/2;
+	
+	Divide(arr,start,mid);
+	Divide(arr,mid+1,end);
+	Conquer(arr,start,end,mid);
+	
+}
+public static void Conquer(int[] arr,int start,int end,int mid) {
+	int[] mergearr = new int[start-end+1];
+	
+	int ind1=start;
+	int ind2=mid+1;
+	int x=0;
+	
+	while(ind1<=mid && ind2<=end) {
+		if(arr[ind1]<=arr[ind2]) {
+			mergearr[x++]=arr[ind1++];
+		}else {
+			mergearr[x++]=arr[ind2++];
+		}
+		 
+	}
+	while(ind1<arr.length) {
+		mergearr[x++]=arr[ind1++];
+	}
+	
+	while(ind2<arr.length) {
+		mergearr[x++]=arr[ind2++];
+	}
+	
+	
+	for(int i=0;i<start-end+1;i++) {
+		System.out.print(mergearr[i]+" ");
+	}
+}
+}
